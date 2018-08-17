@@ -1,0 +1,224 @@
+<div class="uk-offcanvas-content">
+  <app-header-shop-manage [storeId]="storeId" [elementId]="'shop-info-header'"></app-header-shop-manage>
+  <app-loader [loading]="loading"> </app-loader>
+  <div class="uk-container uk-container-small">
+    <nav class="uk-navbar uk-navbar-container uk-margin uk-navbar-transparent">
+      <div class="uk-navbar-left">
+        <a class="uk-navbar-item uk-logo"> {{'shop information'|translate}}</a>
+      </div>
+      <div class="uk-navbar-center">
+      </div>
+      <div class="uk-navbar-right">
+      </div>
+    </nav>
+    <hr>
+  </div>
+  <div class="uk-container uk-container-small uk-margin-top">
+    <h4 class="uk-heading-line">
+      <span>{{'image'|translate}}</span>
+    </h4>
+    <div class="uk-form-stacked">
+      <div uk-grid>
+        <div class="uk-width-1-1">
+          <img class="uk-border-rounded" for="form-image" [src]="form.imageUrl" width="200" height="200" alt="Border rounded">
+          <div class="uk-form-controls uk-margin-top">
+            <div class="js-upload pointer" uk-form-custom>
+              <input type="file" ng2FileSelect [uploader]="uploader" (change)="onProfileChange($event)" />
+              <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                Select an Image
+              </button>
+            </div>
+            <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="uk-heading-line">
+      <span>{{'Cover image'|translate}}</span>
+    </h4>
+    <div class="uk-form-stacked">
+      <div uk-grid>
+        <div class="uk-width-1-1">
+          <img class="uk-border-rounded" for="form-image" [src]="form.coverUrl" width="200" height="200" alt="Border rounded">
+          <div class="uk-form-controls uk-margin-top">
+            <div class="js-upload pointer" uk-form-custom>
+              <input type="file" ng2FileSelect [uploader]="uploaderCover" (change)="onCoverFileChange($event)" />
+              <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploaderCover.uploadAll()" [disabled]="!uploaderCover.getNotUploadedItems().length">
+                Select an Image
+              </button>
+            </div>
+            <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="uk-heading-line">
+      <span>{{'description'|translate}}</span>
+    </h4>
+    <form class="uk-form-stacked">
+      <div uk-grid>
+        <div class="uk-width-1-1">
+          <label class="uk-form-label" for="form-stacked-text">{{'shop name'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="name" [(ngModel)]="form.name" #name="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'shop code'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="code" [(ngModel)]="form.code" #code="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'owner name'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="owner" [(ngModel)]="form.owner" #owner="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-1">
+          <label class="uk-form-label" for="form-stacked-text">{{'description'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="description" [(ngModel)]="form.description"
+              #description="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-1">
+          <label class="uk-form-label" for="form-stacked-text">{{'long description'|translate}}</label>
+          <div class="uk-form-controls">
+            <textarea class="uk-textarea" rows="5" placeholder="" name="longDescription" [(ngModel)]="form.longDescription" #longDescription="ngModel"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <h4 class="uk-heading-line">
+      <span>{{'Image collection'|translate}}</span>
+    </h4>
+    <div class="uk-form-stacked">
+      <div uk-grid>
+        <div class="uk-width-1-1">
+          <div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid="masonry: true">
+            <div *ngFor="let item of form.imageCollection">
+              <div class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle" style="height: 200px">
+                <img [src]="item.url" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="uk-form-controls uk-margin-top">
+            <div class="js-upload pointer" uk-form-custom>
+              <input type="file" ng2FileSelect [uploader]="uploaderImages" (change)="onImgCollectionChange($event)" />
+              <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploaderImages.uploadAll()" [disabled]="!uploaderImages.getNotUploadedItems().length">
+                Select an Image
+              </button>
+            </div>
+            <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h4 class="uk-heading-line">
+      <span>{{'contact'|translate}}</span>
+    </h4>
+    <form class="uk-form-stacked">
+      <div uk-grid>
+        <div class="uk-width-1-1">
+          <label class="uk-form-label" for="form-stacked-text">{{'address'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="address" [(ngModel)]="form.address" #address="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'city'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="city" [(ngModel)]="form.city" #city="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'province'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="province" [(ngModel)]="form.province" #province="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'country'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="country" [(ngModel)]="form.country" #country="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'postcode'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="zipcode" [(ngModel)]="form.zipcode" #zipcode="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'phone'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="phone" [(ngModel)]="form.phone" #longDescription="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'email'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="email" [(ngModel)]="form.email" #email="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'website'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="website" [(ngModel)]="form.website" #website="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'facebook'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="facebook" [(ngModel)]="form.facebook" #facebook="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'line'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="line" [(ngModel)]="form.line" #line="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'instagram'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="instagram" [(ngModel)]="form.instagram" #instagram="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'twitter'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="twitter" [(ngModel)]="form.twitter" #twitter="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-2@m">
+          <label class="uk-form-label" for="form-stacked-text">{{'google'|translate}}</label>
+          <div class="uk-form-controls">
+            <input class="uk-input" id="form-stacked-text" type="text" placeholder="" name="googlePlus" [(ngModel)]="form.googlePlus"
+              #googlePlus="ngModel">
+          </div>
+        </div>
+        <div class="uk-width-1-1">
+          <div class="mapContainer">
+            <agm-map [latitude]="form.lat" [longitude]="form.lng" [zoom]="12">
+              <agm-marker 
+                [latitude]="form.lat" 
+                [longitude]="form.lng"
+                [markerDraggable]="marker.draggable"
+                (dragEnd)="markerDragEnd(m, $event)">
+              </agm-marker>
+            </agm-map>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="uk-container uk-container-small uk-margin-top ">
+    <button class="uk-button uk-button-primary uk-margin uk-align-right" type="button" (click)="save()">{{'save'|translate}}</button>
+  </div>
+</div>

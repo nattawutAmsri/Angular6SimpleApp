@@ -1,0 +1,60 @@
+<div class="uk-container uk-container-small" *ngIf="!displayForm">
+  <nav class="uk-navbar uk-navbar-container uk-margin uk-navbar-transparent">
+    <div class="uk-navbar-left">
+      <a class="uk-navbar-item uk-logo"> {{'shop product'|translate}}</a>
+    </div>
+    <div class="uk-navbar-center">
+    </div>
+    <div class="uk-navbar-right">
+      <div class="uk-navbar-item">
+        <a class="uk-icon-button" uk-icon="plus" (click)="addProduct()"></a>
+      </div>
+    </div>
+  </nav>
+  <hr>
+  <div class="uk-child-width-1-3@s uk-grid-small uk-grid-match" uk-grid>
+    <div *ngFor="let product of products">
+      <div class="uk-card uk-card-default">
+        <div class="uk-card-media-top uk-cover-container uk-padding">
+          <img class="uk-border-rounded" src="../../../../assets/image/coco.jpg" uk-cover>
+          <canvas width="600" height="400"></canvas>
+        </div>
+        <div class="uk-card-body">
+          <p>
+            <b>{{'name'|translate}}:</b> Coco mush</p>
+          <p>
+            <div class="uk-position-bottom-right">
+              <ul class="uk-iconnav uk-margin-bottom uk-margin-right">
+                <li>
+                  <a uk-icon="icon: file-edit"></a>
+                </li>
+                <li>
+                  <a uk-icon="icon: copy"></a>
+                </li>
+                <li>
+                  <a uk-icon="icon: trash"></a>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="uk-container" *ngIf="displayForm">
+  <nav class="uk-navbar uk-navbar-container uk-margin uk-navbar-transparent">
+    <div class="uk-navbar-left">
+      <a class="uk-navbar-item uk-logo"> {{'PRODUCT_FORM'|translate}}</a>
+    </div>
+    <div class="uk-navbar-center">
+    </div>
+    <div class="uk-navbar-right">
+      <div class="uk-navbar-item">
+        <a class="uk-icon-button" uk-icon="back" (click)="back()"></a>
+      </div>
+    </div>
+  </nav>
+  <hr>
+  <app-shop-product-form></app-shop-product-form>
+</div>

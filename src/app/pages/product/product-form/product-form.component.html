@@ -1,0 +1,116 @@
+<div class="uk-container">
+  <form class="uk-form-stacked">
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Name</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="text" name="naem" [(ngModel)]="form.name" #name="ngModel">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Code</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="text"  name="code" [(ngModel)]="form.code" #name="ngModel">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Description</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="text" name="dscription" [(ngModel)]="form.dscription " #name="ngModel">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Long Description</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="text" name="longDescription" [(ngModel)]="form.longDescription" #name="ngModel">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Price</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="number" name="price" [(ngModel)]="form.price" #name="ngModel">
+      </div>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="form-stacked-text">Cost</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="form-stacked-text" type="number" name="cost" [(ngModel)]="form.cost" #name="ngModel">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <h4 class="uk-heading-line">
+        <span>{{'image'|translate}}</span>
+      </h4>
+      <div class="uk-form-stacked">
+        <div uk-grid>
+          <div class="uk-width-1-1">
+            <img class="uk-border-rounded" for="form-image" [src]="form.imageUrl" width="200" height="200" alt="Border rounded">
+            <div class="uk-form-controls uk-margin-top">
+              <div class="js-upload pointer" uk-form-custom>
+                <input type="file" ng2FileSelect [uploader]="uploader" (change)="onProfileChange($event)" />
+                <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                  Select an Image
+                </button>
+              </div>
+              <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <h4 class="uk-heading-line">
+        <span>{{'Cover image'|translate}}</span>
+      </h4>
+      <div class="uk-form-stacked">
+        <div uk-grid>
+          <div class="uk-width-1-1">
+            <img class="uk-border-rounded" for="form-image" [src]="form.coverUrl" width="200" height="200" alt="Border rounded">
+            <div class="uk-form-controls uk-margin-top">
+              <div class="js-upload pointer" uk-form-custom>
+                <input type="file" ng2FileSelect [uploader]="uploaderCover" (change)="onCoverFileChange($event)" />
+                <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploaderCover.uploadAll()" [disabled]="!uploaderCover.getNotUploadedItems().length">
+                  Select an Image
+                </button>
+              </div>
+              <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <h4 class="uk-heading-line">
+        <span>{{'Image collection'|translate}}</span>
+      </h4>
+      <div class="uk-form-stacked">
+        <div uk-grid>
+          <div class="uk-width-1-1">
+            <div class="uk-child-width-1-2@s uk-child-width-1-3@m" uk-grid="masonry: true">
+              <div *ngFor="let item of form.imageCollection">
+                <div class="uk-card uk-card-default uk-flex uk-flex-center uk-flex-middle" style="max-height: 200px">
+                  <img [src]="item.url" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="uk-form-controls uk-margin-top">
+              <div class="js-upload pointer" uk-form-custom>
+                <input type="file" ng2FileSelect [uploader]="uploaderImages" (change)="onImgCollectionChange($event)" />
+                <button type="button" class="uk-button uk-button-default pointer" tabindex="-1" (click)="uploaderImages.uploadAll()" [disabled]="!uploaderImages.getNotUploadedItems().length">
+                  Select an Image
+                </button>
+              </div>
+              <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-container uk-container-small uk-margin-top ">
+      <button class="uk-button uk-button-primary uk-margin uk-align-right" type="button" (click)="save()">{{'save'|translate}}</button>
+    </div>
+  </form>
+</div>

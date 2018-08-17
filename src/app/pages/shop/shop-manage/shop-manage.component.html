@@ -1,0 +1,9 @@
+
+<div class="uk-offcanvas-content">
+	<app-header-shop-manage (changePage)="changePage($event)" (backPage)="backPage($event)"></app-header-shop-manage>
+	<app-shop-info *ngIf="panel.information.show" [shopId]="shopId"></app-shop-info>
+	<app-stock-list *ngIf="panel.stock.show"></app-stock-list>
+	<app-shop-setting *ngIf="panel.setting.show"></app-shop-setting>
+</div>
+
+<app-footer-shop></app-footer-shop>

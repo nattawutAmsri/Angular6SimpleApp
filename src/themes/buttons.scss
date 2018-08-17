@@ -1,0 +1,11 @@
+@import "./colors";
+
+.ks-btn {
+    padding: 12px 8px;
+
+    .ks-btn-orange {
+        background: $orage-color;
+        color: white;
+        text-align: center;
+    }
+}

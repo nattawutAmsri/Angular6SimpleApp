@@ -1,0 +1,11 @@
+{
+    "login" : "Login",
+    "about" : "About",
+    "contact" : "Contact",
+    "email" : "Email",
+    "password" : "Password",
+    "sign up" : "Sign up",
+    "shop" : "Shop",
+    "add shop" : "Add shop",
+    "SHOP_NAME": "Shop name"
+}
